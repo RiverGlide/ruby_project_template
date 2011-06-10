@@ -10,6 +10,7 @@ def current_ruby_version_is desired_ruby_version
   your_version >= desired_version
 end
 
+#TODO: Would prefer this to read `you_should_be_using desired_ruby_version, :or_higher
 def your_ruby_version_should_be_greater_than_or_equal_to desired_ruby_version
   unless current_ruby_version_is desired_ruby_version
     $stderr.puts "Oops! You are using ruby #{RUBY_VERSION}. We really want you to use ruby #{desired_ruby_version} or higher.\n" + 
