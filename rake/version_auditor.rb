@@ -1,3 +1,4 @@
+#TODO: Make this less crude so that major, minor and build numbers allow for more than one digit
 def integer_from rational_version_number 
   rational_version_number.delete(".").to_i
 end
