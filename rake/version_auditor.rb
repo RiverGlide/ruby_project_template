@@ -13,7 +13,7 @@ end
 #TODO: Would prefer this to read `you_should_be_using desired_ruby_version, :or_higher
 def your_ruby_version_should_be_greater_than_or_equal_to desired_ruby_version
   unless current_ruby_version_is desired_ruby_version
-    $stderr.puts "Oops! You are using ruby #{RUBY_VERSION}. We really want you to use ruby #{desired_ruby_version} or higher.\n" + 
+     abort "Oops! You are using ruby #{RUBY_VERSION}. We really want you to use ruby #{desired_ruby_version} or higher.\n" + 
       "Please upgrade to #{desired_ruby_version} or higher.\n" +
       "Suggestion:\n" +
       "  We like using rvm to manage our ruby versions.\n" +
@@ -21,5 +21,5 @@ def your_ruby_version_should_be_greater_than_or_equal_to desired_ruby_version
       "  rvm:  http://beginrescueend.com/\n\n" +
       "Hey, it's up to you, but once you're on ruby #{desired_ruby_version} let us know by running `rake` again.\n\n"
   end
-  puts "You're using ruby #{RUBY_VERSION}. We're happy about that.\n\n" if current_ruby_version_is desired_ruby_version
+  puts "You're using ruby #{RUBY_VERSION}. We're happy about that." if current_ruby_version_is desired_ruby_version
 end

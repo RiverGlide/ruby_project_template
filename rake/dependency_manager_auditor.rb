@@ -1,9 +1,12 @@
 def you_need_our_dependency_manager
   begin
     require 'bundler'
+    puts "You have our preferred dependency manager. Cool!"
   rescue LoadError => e
     $stderr.puts e.message
-    $stderr.puts "\nOoops! You're not quite ready to start. Let's get your environment ready...\n" + 
+    abort "\nOoops! You're not quite ready to start.\n" +
+      e.message + "\n\n" +
+      "Let's get your environment ready...\n" +
       "\nRun `gem install bundler`\n" + 
       "\nBefore you do that, we recommend that you use rvm and use a fresh gemset.\n" +
       "    rvm:                  http://beginrescueend.com/\n" +
