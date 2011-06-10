@@ -9,7 +9,7 @@ def current_ruby_version_is desired_ruby_version
   your_version >= desired_version
 end
 
-def check_ruby_version_is desired_ruby_version
+def your_ruby_version_should_be_greater_than_or_equal_to desired_ruby_version
   unless current_ruby_version_is desired_ruby_version
     $stderr.puts "Oops! You are using ruby #{RUBY_VERSION}. We really want you to use ruby #{desired_ruby_version} or higher.\n" + 
       "Please upgrade to #{desired_ruby_version} or higher.\n" +
