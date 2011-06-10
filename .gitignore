@@ -1,0 +1,7 @@
+.*.swp
+.bundle
+.DS_Store
+
+# nesta / sinatra
+._*
+.sass-cache
