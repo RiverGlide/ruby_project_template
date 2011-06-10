@@ -1,3 +1,3 @@
-require './rake/version_auditor'
-require './rake/dependency_manager_auditor'
-require './rake/dependencies_auditor'
+require './rake/auditors/version_auditor'
+require './rake/auditors/dependency_manager_auditor'
+require './rake/auditors/dependencies_auditor'
