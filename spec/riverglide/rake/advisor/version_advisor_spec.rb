@@ -28,7 +28,7 @@ module RiverGlide
           RubyVersionExpert.are_we_using( desired_ruby_version ).should be_false
         end
 
-        it "tells you when the ruby version is the same or higher" do
+        it "tells you when the ruby version is the same or higher", :wip => true do
           # RubyVersionExpert.are_we_using( desired_ruby_version, :or_higher )
         end
 
