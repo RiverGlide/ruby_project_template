@@ -2,6 +2,7 @@ module RiverGlide
   module Rake
     module Advisor
       class RubyVersionExpert
+        #TODO: Consider making this a 'version' object that is comparable
         def self.are_we_using? desired_ruby_version, compared=:exactly
           return RUBY_VERSION == desired_ruby_version if compared == :exactly
           if compared == :or_higher

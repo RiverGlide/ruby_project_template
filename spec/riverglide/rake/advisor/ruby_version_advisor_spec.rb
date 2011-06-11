@@ -12,8 +12,15 @@ module RiverGlide
           RubyVersionExpert.are_we_using?( desired_ruby_version, :exactly ).should be_true
         end
 
-        it "tells you when the ruby version is not exactly right" do
+        it "tells you when the ruby version is not exactly right (too high)" do
           desired_ruby_version = higher_than RUBY_VERSION
+
+          RubyVersionExpert.are_we_using?( desired_ruby_version ).should be_false
+          RubyVersionExpert.are_we_using?( desired_ruby_version, :exactly ).should be_false
+        end
+
+        it "tells you when the ruby version is not exactly right (too low)" do
+          desired_ruby_version = lower_than RUBY_VERSION
 
           RubyVersionExpert.are_we_using?( desired_ruby_version ).should be_false
           RubyVersionExpert.are_we_using?( desired_ruby_version, :exactly ).should be_false
@@ -37,6 +44,7 @@ module RiverGlide
           RubyVersionExpert.are_we_using?( desired_ruby_version, :or_higher ).should be_true
         end
 
+        # TODO: Remove duplication
         def higher_than version
           version_numbers = version.split( '.' ).collect {|n| n.to_i}
           version_numbers[2] = version_numbers[2]+1
