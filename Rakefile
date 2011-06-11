@@ -2,6 +2,7 @@ puts "\n ** RiverGlide.com - flow without friction **\n\n"
 
 require 'rubygems'
 require './rake/cucumber_tasks'
+require './rake/rspec_tasks'
 
 desc "Make sure your environment is ready"
 task :environment_ready do
@@ -11,6 +12,5 @@ task :environment_ready do
   you_need_to_install_any_dependencies
 end
 
-
 desc "Checks the environment and runs all tests"
-task :default => [:environment_ready, :cucumber]
+task :default => [:environment_ready, :spec, :cucumber]
