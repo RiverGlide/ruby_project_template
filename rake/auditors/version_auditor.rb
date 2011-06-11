@@ -1,18 +1,7 @@
-#TODO: Make this less crude so that major, minor and build numbers allow for more than one digit
-def integer_from rational_version_number 
-  rational_version_number.delete(".").to_i
-end
-
-def current_ruby_version_is desired_ruby_version
-  your_version    = integer_from( RUBY_VERSION )
-  desired_version = integer_from desired_ruby_version
-
-  your_version >= desired_version
-end
-
-#TODO: Would prefer this to read `you_should_be_using desired_ruby_version, :or_higher
+$: << File.join(File.expand_path(File.dirname(__FILE__)), "..", "..", "lib")
 def your_ruby_version_should_be_greater_than_or_equal_to desired_ruby_version
-  unless current_ruby_version_is desired_ruby_version
+  require 'riverglide/rake/advisor/ruby_version_advisor'
+  unless RiverGlide::Rake::Advisor::RubyVersionExpert.are_we_using? desired_ruby_version, :or_higher
      abort "Oops! You are using ruby #{RUBY_VERSION}. We really want you to use ruby #{desired_ruby_version} or higher.\n" + 
       "Please upgrade to #{desired_ruby_version} or higher.\n" +
       "Suggestion:\n" +
@@ -21,5 +10,5 @@ def your_ruby_version_should_be_greater_than_or_equal_to desired_ruby_version
       "  rvm:  http://beginrescueend.com/\n\n" +
       "Hey, it's up to you, but once you're on ruby #{desired_ruby_version} let us know by running `rake` again.\n\n"
   end
-  puts "You're using ruby #{RUBY_VERSION}. We're happy about that." if current_ruby_version_is desired_ruby_version
+  puts "You're using ruby #{RUBY_VERSION}. We're happy about that."
 end
