@@ -4,8 +4,8 @@ module RiverGlide
       class RubyVersionExpert
         def self.are_we_using? desired_ruby_version, compared=:exactly
           return RUBY_VERSION == desired_ruby_version if compared == :exactly
-          desired_version = desired_ruby_version.split('.').collect { |n| n.to_i }
           if compared == :or_higher
+            desired_version = desired_ruby_version.split('.').collect { |n| n.to_i }
             current_version = RUBY_VERSION.split('.').collect { |n| n.to_i }
             same_or_higher = []
             (0..2).each do |i|

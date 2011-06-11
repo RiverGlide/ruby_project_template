@@ -7,7 +7,7 @@ require './rake/rspec_tasks'
 desc "Make sure your environment is ready"
 task :environment_ready do
   require './rake/required_auditors'
-  your_ruby_version_should_be_greater_than_or_equal_to "1.9.2"
+  your_ruby_version_should_be "1.9.2", :or_higher
   you_need_our_dependency_manager
   you_need_to_install_any_dependencies
 end

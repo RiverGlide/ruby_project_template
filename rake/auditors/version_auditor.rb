@@ -1,7 +1,7 @@
 $: << File.join(File.expand_path(File.dirname(__FILE__)), "..", "..", "lib")
-def your_ruby_version_should_be_greater_than_or_equal_to desired_ruby_version
+def your_ruby_version_should_be desired_ruby_version, with_precision
   require 'riverglide/rake/advisor/ruby_version_advisor'
-  unless RiverGlide::Rake::Advisor::RubyVersionExpert.are_we_using? desired_ruby_version, :or_higher
+  unless RiverGlide::Rake::Advisor::RubyVersionExpert.are_we_using? desired_ruby_version, with_precision
      abort "Oops! You are using ruby #{RUBY_VERSION}. We really want you to use ruby #{desired_ruby_version} or higher.\n" + 
       "Please upgrade to #{desired_ruby_version} or higher.\n" +
       "Suggestion:\n" +
