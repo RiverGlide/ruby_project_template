@@ -28,6 +28,10 @@ module RiverGlide
           RubyVersionExpert.are_we_using( desired_ruby_version ).should be_false
         end
 
+        it "tells you when the ruby version is the same or higher" do
+          # RubyVersionExpert.are_we_using( desired_ruby_version, :or_higher )
+        end
+
         def higher_than version
           version_numbers = version.split( '.' ).collect {|n| n.to_i}
           version_numbers[2] = version_numbers[2]+1
