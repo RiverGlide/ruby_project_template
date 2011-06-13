@@ -44,6 +44,14 @@ module RiverGlide
           RubyVersionExpert.are_we_using?( desired_ruby_version, :or_higher ).should be_true
         end
 
+        it "complains when when it doesn't recognise the version number" do
+          unrecognised_versions = ["1.9.a", "1.9.2a", "not a version", ".1.9.2", "1.9.2.1"]
+
+          unrecognised_versions.each do | text |
+            lambda {RubyVersionExpert.are_we_using?( text )}.should raise_error
+          end
+        end
+
         # TODO: Remove duplication
         def higher_than version
           version_numbers = version.split( '.' ).collect {|n| n.to_i}

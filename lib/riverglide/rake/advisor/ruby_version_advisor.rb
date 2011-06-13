@@ -4,6 +4,7 @@ module RiverGlide
       class RubyVersionExpert
         #TODO: Consider making this a 'version' object that is comparable
         def self.are_we_using? desired_ruby_version, compared=:exactly
+          raise "I don't recognise #{desired_ruby_version} as a version number" if not desired_ruby_version =~ /^\d+\.\d+\.\d+$/
           return RUBY_VERSION == desired_ruby_version if compared == :exactly
           if compared == :or_higher
             desired_version = version_numbers_from desired_ruby_version
