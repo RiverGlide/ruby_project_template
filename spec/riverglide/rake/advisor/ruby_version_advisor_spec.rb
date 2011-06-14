@@ -4,20 +4,23 @@ module RiverGlide
     module Advisor
       describe RubyVersionExpert do
         include RiverGlide::Rake::Advisor
-        
-        let( :positions ) {{:major => 0, :minor => 1, :build => 2 }}
 
-        it "tells you when the current version and desired version are both exactly '#{RUBY_VERSION}'" do
-          desired_ruby_version = RUBY_VERSION
+        context "tells you when the current version and desired version are both exactly '#{RUBY_VERSION}'" do
+          it "implicitly comparing them exactly" do
+            desired_ruby_version = RUBY_VERSION
 
-          RubyVersionExpert.are_we_using?( desired_ruby_version ).should be_true
-          RubyVersionExpert.are_we_using?( desired_ruby_version, :exactly ).should be_true
+            RubyVersionExpert.are_we_using?( desired_ruby_version ).should be_true
+          end
+
+          it "explicitly comparing them exactly" do
+            desired_ruby_version = RUBY_VERSION
+
+            RubyVersionExpert.are_we_using?( desired_ruby_version, :exactly ).should be_true
+          end
         end
 
         context "complains when it doesn't understand the version number, for example:" do
-          
-          [
-            "1.9.a",
+          [ "1.9.a",
             "v1.9.2",
             "1.9.2a", 
             "not a version", 
@@ -72,8 +75,10 @@ module RiverGlide
 
         def a_version higher_or_lower_than, version_number, major_minor_or_build
           alterations = {:higher_than => :+, :lower_than => :-}
+          positions = {:major => 0, :minor => 1, :build => 2 }
           altered_by = alterations[higher_or_lower_than]
           position = positions[major_minor_or_build]
+
           version_numbers = version_number.split( '.' ).collect {|n| n.to_i}
           version_numbers[position] = version_numbers[position].send altered_by, 1
           version_numbers.join '.'
