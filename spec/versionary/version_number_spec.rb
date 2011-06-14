@@ -2,9 +2,47 @@ require 'versionary/version_number'
 module Versionary
   describe VersionNumber do
     include Versionary
-
-    it "tells you if two version numbers are the same" do
+   
+    it "tells you when two version numbers are equal" do
       VersionNumber.of( RUBY_VERSION ).should == VersionNumber.of( RUBY_VERSION )
+    end
+
+    [:major, :minor, :build].each do | position |
+      context "when the #{position} number is different" do
+        context "making the first version lower than the second version" do
+          let(:first_version) {'0.0.9'}
+          let(:second_version) { a_version :higher_than, first_version, position }
+
+          it "tells you that the first number is less than the second number" do
+            VersionNumber.of( first_version ).should < VersionNumber.of( second_version )
+          end
+
+          it "tells you that the first number is not greater than the second number" do
+            VersionNumber.of( first_version ).should_not > VersionNumber.of( second_version )
+          end
+
+          it "tells you that they're not equal" do
+            VersionNumber.of( first_version ).should_not == VersionNumber.of( second_version )
+          end
+        end
+        
+        context "making the first version higher than the second version" do
+          let(:first_version) {'10.10.10'}
+          let(:second_version) { a_version :lower_than, first_version, position }
+
+          it "tells you that the first number is greater than the second number" do
+            VersionNumber.of( first_version ).should > VersionNumber.of( second_version )
+          end
+
+          it "tells you that the first number is not less than the second number" do
+            VersionNumber.of( first_version ).should_not < VersionNumber.of( second_version )
+          end
+
+          it "tells you that they're not equal" do
+            VersionNumber.of( first_version ).should_not == VersionNumber.of( second_version )
+          end
+        end
+      end
     end
 
     context "when the version number provided is not understood, for example:" do
@@ -19,6 +57,17 @@ module Versionary
           lambda {VersionNumber.of( unrecognised_version )}.should raise_error NotAVersionComplaint
         end
       end
+    end
+
+    def a_version higher_or_lower_than, version_number, major_minor_or_build
+      alterations = {:higher_than => :+, :lower_than => :-}
+      positions = {:major => 0, :minor => 1, :build => 2 }
+      altered_by = alterations[higher_or_lower_than]
+      position = positions[major_minor_or_build]
+
+      version_numbers = version_number.split( '.' ).collect {|n| n.to_i}
+      version_numbers[position] = version_numbers[position].send altered_by, 1
+      version_numbers.join '.'
     end
   end
 end

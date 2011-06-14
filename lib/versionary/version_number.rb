@@ -3,21 +3,33 @@ module Versionary
 
     include Comparable
 
+    attr_reader :major, :minor, :build
+
     def self.of version
       self.new version
     end
 
     def initialize version
       raise NotAVersionComplaint.about version if not a_recognised? version
-      @version = version
+      numbers = version.split( '.' ).collect { |n| n.to_i }
+      @major = numbers[0]
+      @minor = numbers[1]
+      @build = numbers[2]
     end
 
     def <=> other_version
-      @version.to_s <=> other_version.to_s
+      diff = []
+      diff[0] = self.major <=> other_version.major
+      diff[1] = self.minor <=> other_version.minor
+      diff[2] = self.build <=> other_version.build
+      diff.each do |v|
+        return v if v != 0
+      end
+      0
     end
 
     def to_s
-      @version
+      "#{@major}.#{@minor}.#{@build}" 
     end
 
     private
