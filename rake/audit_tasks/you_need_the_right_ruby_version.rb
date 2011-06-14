@@ -3,7 +3,9 @@ require 'versionary/version_number'
 
 task :you_need_the_right_ruby_version do
   include Versionary
+
   minimum_ruby_version = ENV[ 'MINIMUM_RUBY_VERSION' ]
+  
   with_guidance = "
   Oops! You are using ruby #{RUBY_VERSION}. We really want you to use ruby #{minimum_ruby_version} or higher
     Suggestion:
@@ -12,8 +14,7 @@ task :you_need_the_right_ruby_version do
       rvm:  http://beginrescueend.com/
   Hey, it's up to you, but once you're on ruby #{minimum_ruby_version} let us know by running `rake` again.\n\n"
 
-  if VersionNumber.of( RUBY_VERSION ) < VersionNumber.of( minimum_ruby_version )
-    abort with_guidance
-  end
+  abort with_guidance if VersionNumber.of( RUBY_VERSION ) < VersionNumber.of( minimum_ruby_version )
+  
   puts "You're using ruby #{RUBY_VERSION}. We're happy about that."
 end
