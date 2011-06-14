@@ -1,4 +1,4 @@
-def you_need_our_dependency_manager
+task :you_need_our_dependency_manager do
   begin
     require 'bundler'
     puts "You have our preferred dependency manager. Cool!"

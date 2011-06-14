@@ -1,4 +1,4 @@
-def you_need_to_install_any_dependencies
+task :you_need_to_install_any_dependencies do
   begin
     Bundler.setup(:default, :development)
     puts "You have all the dependencies you need!!"
