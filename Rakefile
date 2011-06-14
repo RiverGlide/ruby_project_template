@@ -1,6 +1,5 @@
 puts "\n ** RiverGlide.com - flow without friction **\n"
 
-require 'rubygems'
 require './rake/cucumber_tasks'
 require './rake/rspec_tasks'
 
