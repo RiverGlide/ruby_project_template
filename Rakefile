@@ -15,4 +15,8 @@ task :environment_ready => [
 ]
 
 desc "Checks the environment and runs all tests"
-task :default => [:environment_ready, :spec, :cucumber]
+task :default => [
+  :environment_ready, 
+  :spec, 
+  :cucumber
+]
