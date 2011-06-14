@@ -4,54 +4,69 @@ module RiverGlide
     module Advisor
       describe RubyVersionExpert do
         include RiverGlide::Rake::Advisor
+        
         let( :positions ) {{:major => 0, :minor => 1, :build => 2 }}
 
-        it "tells you when the ruby version is exactly right" do
+        it "tells you when the current version and desired version are both exactly '#{RUBY_VERSION}'" do
           desired_ruby_version = RUBY_VERSION
 
           RubyVersionExpert.are_we_using?( desired_ruby_version ).should be_true
           RubyVersionExpert.are_we_using?( desired_ruby_version, :exactly ).should be_true
         end
 
-        it "tells you when the ruby version is not exactly right (too high)" do
-          positions.keys.each do |position|
-            desired_ruby_version = a_version :higher_than, RUBY_VERSION, position
-
-            RubyVersionExpert.are_we_using?( desired_ruby_version ).should be_false
-            RubyVersionExpert.are_we_using?( desired_ruby_version, :exactly ).should be_false
+        context "complains when it doesn't understand the version number, for example:" do
+          
+          [
+            "1.9.a",
+            "v1.9.2",
+            "1.9.2a", 
+            "not a version", 
+            ".1.9.2", 
+            "1.9.2.1" 
+          ].each do | unrecognised_version |
+            it "it doesn't understand '#{unrecognised_version}'" do
+              lambda {RubyVersionExpert.are_we_using?( unrecognised_version )}.should raise_error
+            end
           end
         end
+        
+        context "compares versions taking into account the major, minor and build numbers" do
+          [:major, :minor, :build].each do | position |
+            context "comparing against the #{position} number exactly" do  
+              it "tells you when the ruby version is not exactly right (#{position} too high)" do
+                desired_ruby_version = a_version :higher_than, RUBY_VERSION, position
 
-        it "tells you when the ruby version is not exactly right (too low)" do
-          desired_ruby_version = a_version :lower_than, RUBY_VERSION, :build
+                RubyVersionExpert.are_we_using?( desired_ruby_version ).should be_false
+                RubyVersionExpert.are_we_using?( desired_ruby_version, :exactly ).should be_false
+              end
 
-          RubyVersionExpert.are_we_using?( desired_ruby_version ).should be_false
-          RubyVersionExpert.are_we_using?( desired_ruby_version, :exactly ).should be_false
-        end
+              it "tells you when the ruby version is not exactly right (#{position} too low)" do
+                desired_ruby_version = a_version :lower_than, RUBY_VERSION, position
 
-        it "tells you when we are using a ruby version that is (the same) or higher" do
-          desired_ruby_version = a_version :lower_than, RUBY_VERSION, :build
-          
-          RubyVersionExpert.are_we_using?( desired_ruby_version, :or_higher ).should be_true
-        end
+                RubyVersionExpert.are_we_using?( desired_ruby_version ).should be_false
+                RubyVersionExpert.are_we_using?( desired_ruby_version, :exactly ).should be_false
+              end
+            end
+            
+            context "allowing for the current ruby version #{position} number to be the same or higher" do 
+              it "tells you when the #{position} of the current version is (the same) or higher" do
+                desired_ruby_version = a_version :lower_than, RUBY_VERSION, position
+                
+                RubyVersionExpert.are_we_using?( desired_ruby_version, :or_higher ).should be_true
+              end
 
-        it "tells you when we are using a ruby version that is the same (or higher)" do
-          desired_ruby_version = RUBY_VERSION
-          
-          RubyVersionExpert.are_we_using?( desired_ruby_version, :or_higher ).should be_true
-        end
+              it "tells you when the #{position} of the current version is the same (or higher)" do
+                desired_ruby_version = RUBY_VERSION
+                
+                RubyVersionExpert.are_we_using?( desired_ruby_version, :or_higher ).should be_true
+              end
 
-        it "tells you when we are not using a ruby version that is (the same) or higher" do
-          desired_ruby_version = a_version :higher_than, RUBY_VERSION, :build
+              it "tells you when we are not using a ruby version that is (the same) or higher" do
+                desired_ruby_version = a_version :higher_than, RUBY_VERSION, position
 
-          RubyVersionExpert.are_we_using?( desired_ruby_version, :or_higher ).should be_false
-        end
-
-        it "complains when when it doesn't understand the version number" do
-          unrecognised_versions = ["1.9.a", "1.9.2a", "not a version", ".1.9.2", "1.9.2.1"]
-
-          unrecognised_versions.each do | unrecognised_version |
-            lambda {RubyVersionExpert.are_we_using?( unrecognised_version )}.should raise_error
+                RubyVersionExpert.are_we_using?( desired_ruby_version, :or_higher ).should be_false
+              end
+            end
           end
         end
 
