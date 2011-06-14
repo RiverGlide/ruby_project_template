@@ -1,6 +1,6 @@
 require 'versionary/version_number'
 module Versionary
-  describe VersionNumber do
+  describe VersionNumber, :template_project => true  do
     include Versionary
    
     context "when the versions are the same" do
