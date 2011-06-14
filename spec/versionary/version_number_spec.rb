@@ -3,8 +3,18 @@ module Versionary
   describe VersionNumber do
     include Versionary
    
-    it "tells you when two version numbers are equal" do
-      VersionNumber.of( RUBY_VERSION ).should == VersionNumber.of( RUBY_VERSION )
+    context "when the versions are the same" do
+      it "tells you they are equal" do
+        VersionNumber.of( RUBY_VERSION ).should == VersionNumber.of( RUBY_VERSION )
+      end
+
+      it "tells you that the first number is not less than second number" do
+        VersionNumber.of( RUBY_VERSION ).should_not < VersionNumber.of( RUBY_VERSION )
+      end
+
+      it "tells you that the first number is not greater than second number" do
+        VersionNumber.of( RUBY_VERSION ).should_not > VersionNumber.of( RUBY_VERSION )
+      end
     end
 
     [:major, :minor, :build].each do | position |
@@ -27,7 +37,7 @@ module Versionary
         end
         
         context "making the first version higher than the second version" do
-          let(:first_version) {'10.10.10'}
+          let(:first_version) {'10.10.10'} # to ensure that digits are compared numerically, not alphabetically
           let(:second_version) { a_version :lower_than, first_version, position }
 
           it "tells you that the first number is greater than the second number" do
