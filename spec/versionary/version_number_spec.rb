@@ -3,9 +3,8 @@ module Versionary
   describe VersionNumber do
     include Versionary
 
-    it "assumes you want to know when they're exactly the same" do
-      pending "dealing with unrecognised versions first"
-      VersionNumber.of( RUBY_VERSION ).should == VersionNumber.new( RUBY_VERSION )
+    it "tells you if two version numbers are the same" do
+      VersionNumber.of( RUBY_VERSION ).should == VersionNumber.of( RUBY_VERSION )
     end
 
     context "when the version number provided is not understood, for example:" do
