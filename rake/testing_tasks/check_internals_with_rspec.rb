@@ -16,5 +16,5 @@ begin
     end
   end
 rescue LoadError => e
-  puts "Don't worry - follow the instructions and this error will go away:\n" + e.message
+  # Do nothing - bundler will sort this out  
 end
