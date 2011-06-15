@@ -1,7 +1,4 @@
-$: << File.join(File.expand_path(File.dirname(__FILE__)), "..", "versionary", "lib")
-require 'versionary/version_number'
-
-task :you_need_the_right_ruby_version do
+task :you_need_the_right_ruby_version => :you_need_versionary do
   include Versionary
 
   minimum_ruby_version = ENV[ 'MINIMUM_RUBY_VERSION' ]
@@ -18,3 +15,17 @@ task :you_need_the_right_ruby_version do
   
   puts "You're using ruby #{RUBY_VERSION}. We're happy about that."
 end
+
+task :you_need_versionary do
+  begin 
+    require 'versionary/version_number'
+  rescue LoadError
+    puts "
+    To continue, you need a tiny little gem called versionary:
+
+      gem install versionary
+    
+    Once that's installed, type `rake` and we'll tell you what to do next\n\n"
+  end
+end
+

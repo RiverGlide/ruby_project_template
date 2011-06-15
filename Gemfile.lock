@@ -32,9 +32,11 @@ GEM
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.6.0)
     term-ansicolor (1.0.5)
+    versionary (0.1.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   cukesalad (~> 0.6.1)
+  versionary (~> 0.1.1)
