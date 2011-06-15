@@ -3,9 +3,9 @@
 Starting a new ruby project? Fed up of [yak-shaving](http://www.urbandictionary.com/define.php?term=yak%20shaving)?
 
 ## Getting Started
-Clone this project as normal. If you don't want this project's history so you can start afresh, use the following command:
+Clone this project as normal.
 
-    git clone --depth 1 git://github.com/RiverGlide/ruby_project_template.git
+    git clone git://github.com/RiverGlide/ruby_project_template.git
 
 Rename the `ruby_project_template` to a name more meaningful to your project.
 
