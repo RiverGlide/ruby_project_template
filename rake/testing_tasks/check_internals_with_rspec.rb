@@ -16,6 +16,11 @@ begin
       spec.rspec_opts = options
     end
   end
+
+  RSpec::Core::RakeTask.new(:spec_template_project) do |spec|
+    spec.pattern = FileList['rake/versionary/spec/**/*_spec.rb']
+    spec.rspec_opts = tasks[:spec_template_project]
+  end
 rescue LoadError => e
   #do_nothing - bundler will sort this out
 end

@@ -1,4 +1,4 @@
-$: << File.join(File.expand_path(File.dirname(__FILE__)), "..", "..", "lib")
+$: << File.join(File.expand_path(File.dirname(__FILE__)), "..", "versionary", "lib")
 require 'versionary/version_number'
 
 task :you_need_the_right_ruby_version do
