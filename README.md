@@ -4,7 +4,14 @@
 
 Starting a new ruby project? Fed up of [yak-shaving](http://www.urbandictionary.com/define.php?term=yak%20shaving)?
 
-Clone this project, then remove the remote:
+## Getting Started
+Clone this project as normal. If you don't want this project's history so you can start afresh, use the following command:
+
+    git clone --depth 1 git://github.com/RiverGlide/ruby_project_template.git
+
+Rename the `ruby_project_template` to a name more meaningful to your project.
+
+Then change directory into that folder and remove the _origin_  remote:
 
     git remote rm origin
 
@@ -12,7 +19,7 @@ Then add a remote to your project:
 
     git remote add origin <git link to your project>
 
-Check the Rakefile and set your minimum ruby version number
+Check the Rakefile and set your minimum ruby version number, e.g.:
    
     ENV[ 'MINIMUM_RUBY_VERSION' ] = '1.9.2'
 
@@ -34,6 +41,8 @@ You're ready to go once you see:
     0 scenarios
     0 steps
     0m0.000s
+
+Edit the `README.md` file and make your first commit to start your new project.
 
 Feel free to edit the `Rakefile` and move things around all you like. Just type `rake -T` for a list of available tasks.
 
