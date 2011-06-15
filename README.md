@@ -1,7 +1,5 @@
 # Ruby Template Project with CukeSalad
 
-(Work in progress)
-
 Starting a new ruby project? Fed up of [yak-shaving](http://www.urbandictionary.com/define.php?term=yak%20shaving)?
 
 ## Getting Started
