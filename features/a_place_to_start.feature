@@ -1,9 +1,10 @@
-@theme_RiverGlide_exists @wip
-Feature: As a potential client
-  You want to know that we exist
-  So that you can start looking for things that increase your confidence in us
+@wip
+Feature: As <some role>
+  You want <some capability>
+  So that <some benefit to the user>
 
-  Scenario: There is a website
-    Given you are a potential customer
-    When  you attempt to visit RiverGlide
-    Then  you should arrive at "RiverGlide - flow without friction"
+  Scenario: <Edit the scenarios>
+    Given you are a some role you need to define 
+    And   you were able to do something that needs to be explained
+    When  you attempt to do something else that needs to be explained
+    Then  you should see some outcome you need to define
