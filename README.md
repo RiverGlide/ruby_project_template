@@ -1,5 +1,7 @@
 # Ruby Template Project with CukeSalad
 
+(Work in progress)
+
 Starting a new ruby project? Fed up of [yak-shaving](http://www.urbandictionary.com/define.php?term=yak%20shaving)?
 
 Clone this project, then remove the remote:
@@ -33,4 +35,8 @@ You're ready to go once you see:
     0 steps
     0m0.000s
 
+Feel free to edit the `Rakefile` and move things around all you like. Just type `rake -T` for a list of available tasks.
+
 Then you can go straight to `features/a_place_to_start.feature` and start specifying your first feature.
+
+Enjoy!!
