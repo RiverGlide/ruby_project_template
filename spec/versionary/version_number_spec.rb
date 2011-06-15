@@ -2,7 +2,7 @@ require 'versionary/version_number'
 module Versionary
   describe VersionNumber, :template_project => true  do
     include Versionary
-   
+
     context "when the versions are the same" do
       it "tells you they are equal" do
         VersionNumber.of( RUBY_VERSION ).should == VersionNumber.of( RUBY_VERSION )
@@ -52,6 +52,23 @@ module Versionary
             VersionNumber.of( first_version ).should_not == VersionNumber.of( second_version )
           end
         end
+      end
+    end
+
+    context "when the latter number is a string" do
+      it "tells you when they're equal as version numbers" do
+        VersionNumber.of('1.9.2').should == '1.9.2'
+      end
+
+      it "tells you when the first version number is greater than a string representation" do
+        VersionNumber.of('1.9.10').should > '1.9.9'
+      end
+      it "tells you when the first version number is less than a string representation" do 
+        VersionNumber.of('1.9.9').should < '1.9.10'
+      end
+
+      it "tells you when the number is not equal to the string representation" do
+        VersionNumber.of('1.9.9').should_not == '1.9.10'
       end
     end
 

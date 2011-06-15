@@ -14,7 +14,7 @@ task :you_need_the_right_ruby_version do
       rvm:  http://beginrescueend.com/
   Hey, it's up to you, but once you're on ruby #{minimum_ruby_version} let us know by running `rake` again.\n\n"
 
-  abort with_guidance if VersionNumber.of( RUBY_VERSION ) < VersionNumber.of( minimum_ruby_version )
+  abort with_guidance if VersionNumber.of( RUBY_VERSION ) < minimum_ruby_version
   
   puts "You're using ruby #{RUBY_VERSION}. We're happy about that."
 end

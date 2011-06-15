@@ -18,6 +18,7 @@ module Versionary
     end
 
     def <=> other_version
+      other_version = VersionNumber.of(other_version) if other_version.class == String
       diff = []
       diff[0] = self.major <=> other_version.major
       diff[1] = self.minor <=> other_version.minor
