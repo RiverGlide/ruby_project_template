@@ -1,5 +1,6 @@
 @wip
-Feature: As <some role>
+Feature: A Place To Start
+  As <some role>
   You want <some capability>
   So that <some benefit to the user>
 
