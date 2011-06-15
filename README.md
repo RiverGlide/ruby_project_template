@@ -54,4 +54,6 @@ Then you can go straight to `features/a_place_to_start.feature` and start specif
 
     rake features_wip
 
+Remember, check the .gitignore file to make sure it ignores the things you want it to ignore.
+
 Enjoy!!

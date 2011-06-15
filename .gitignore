@@ -1,7 +1,21 @@
-.*.swp
-.bundle
+.rvmrc
+*.swp
+*.swo
 .DS_Store
+
+#rdoc generated
+rdoc
+
+# yard generated
+doc
+
+# bundler
+.bundle
+
+# ignore built gems
+pkg
 
 # nesta / sinatra
 ._*
 .sass-cache
+
