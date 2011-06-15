@@ -22,12 +22,12 @@ You're ready to go once you see:
     You're using ruby 1.9.2. We're happy about that.
     You have our preferred dependency manager. Cool!
     You have all the dependencies you need!!
-    /Users/antony/.rvm/rubies/ruby-1.9.2-p180/bin/ruby -S bundle exec rspec -cfd --tag ~wip --tag ~todo --tag ~@template_project spec/versionary/version_number_spec.rb
+    ~/.rvm/rubies/ruby-1.9.2-p180/bin/ruby -S bundle exec rspec -cfd --tag ~wip --tag ~todo --tag ~@template_project spec/versionary/version_number_spec.rb
     No examples were matched. Perhaps {:wip=>true, :todo=>true, :template_project=>true} is excluding everything?
 
     Finished in 0.00003 seconds
     0 examples, 0 failures
-    /Users/antony/.rvm/rubies/ruby-1.9.2-p180/bin/ruby -S bundle exec cucumber 
+    ~/.rvm/rubies/ruby-1.9.2-p180/bin/ruby -S bundle exec cucumber 
     Using the default profile...
     0 scenarios
     0 steps
