@@ -1,7 +1,7 @@
 task :you_need_to_install_any_dependencies do
   begin
     Bundler.setup(:default, :development)
-    puts "You have all the dependencies you need!!"
+    puts "You have all the dependencies you need!!\n\n"
   rescue Bundler::BundlerError => e
     $stderr.puts "Oops! So near, yet so far.\n\n"
     $stderr.puts e.message + "\n\n"
