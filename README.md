@@ -37,6 +37,8 @@ You're ready to go once you see:
 
 Feel free to edit the `Rakefile` and move things around all you like. Just type `rake -T` for a list of available tasks.
 
-Then you can go straight to `features/a_place_to_start.feature` and start specifying your first feature.
+Then you can go straight to `features/a_place_to_start.feature` and start specifying your first feature. It's already tagged as work-in-progress.
+
+    rake features_wip
 
 Enjoy!!
