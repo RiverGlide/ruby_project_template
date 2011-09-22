@@ -1,4 +1,5 @@
 .rvmrc
+.rvmrc.*
 *.swp
 *.swo
 .DS_Store
