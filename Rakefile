@@ -6,9 +6,15 @@ require './rake/check/environment'
 require './rake/check/internals'
 require './rake/check/features'
 
-desc "Checks the environment and runs all tests"
-task :default => [
-  'check:environment', 
-  'check:internals', 
-  'check:features'
-]
+namespace :check do
+  desc "Check everything (except todo and wip stuff)"
+  task :everything => [
+    'check:environment', 
+    'check:internals', 
+    'check:features'
+  ]
+end
+
+default = 'check:everything'
+desc "Runs the #{default} task"
+task :default => [ default ]
