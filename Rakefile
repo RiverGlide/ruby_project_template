@@ -8,7 +8,7 @@ require './rake/testing_tasks/check_features_with_cucumber'
 
 desc "Checks the environment and runs all tests"
 task :default => [
-  :audit_environment, 
-  :spec, 
-  :features
+  'check:environment', 
+  'check:design', 
+  'check:features'
 ]
