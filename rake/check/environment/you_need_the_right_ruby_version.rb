@@ -1,4 +1,4 @@
-require './rake/audit_tasks/first_you_need_versionary'
+require './rake/check/environment/first_you_need_versionary'
 
 task :you_need_the_right_ruby_version => :first_you_need_versionary do
   include Versionary
