@@ -11,7 +11,7 @@ begin
       }
       
       additional_tasks.each do | task_name, options |
-        Cucumber::Rake::Task.new(task_name) do |wip|
+        Cucumber::Rake::Task.new(task_name, "Run cucumber features with #{options}") do |wip|
             wip.cucumber_opts = options 
         end
       end
