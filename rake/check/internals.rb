@@ -3,12 +3,16 @@ begin
   require 'rspec/core/rake_task'
 
   namespace :check do
+    thing_we_are_checking = :internals
+
     file_pattern = 'spec/**/*_spec.rb'
-    RSpec::Core::RakeTask.new(:design) do |spec|
+
+    RSpec::Core::RakeTask.new(thing_we_are_checking) do |spec|
       spec.pattern = FileList[file_pattern]
       spec.rspec_opts = "-cfd --tag ~wip --tag ~todo"
     end
-    namespace :design do
+
+    namespace thing_we_are_checking do
       additional_tasks = { 
         :wip              => "-cfd --tag @wip",
         :todo             => "-cfd --tag @todo",

@@ -2,9 +2,11 @@ begin
   require 'cucumber/rake/task'
 
   namespace :check do
-    Cucumber::Rake::Task.new(:features)
+    thing_we_are_checking = :features
 
-    namespace :features do
+    Cucumber::Rake::Task.new(thing_we_are_checking)
+
+    namespace thing_we_are_checking do
       additional_tasks = {
         :wip  => '-p wip',
         :todo => '-p todo'
